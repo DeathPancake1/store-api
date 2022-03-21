@@ -1,9 +1,7 @@
 import { Client } from "../database"
 import { User, UserAuth } from "../interfaces/user";
 import bcrypt from "bcrypt"
-import dotenv from 'dotenv';
 
-require("dotenv").config();
 
 import jsonwebtoken from 'jsonwebtoken';
 
@@ -45,7 +43,6 @@ export default class UsersStore{
             const salt: string = process.env.SALT_ROUNDS as string;
             const { firstname, lastname, password } = user
             const hashedPass : string = bcrypt.hashSync(password+ pepper, parseInt(salt));
-            console.log(hashedPass)
             const sql: string = `INSERT INTO users (firstname, lastname, password) VALUES($1, $2, $3) RETURNING *`
             const conn = await Client.connect()
             const result = await (await conn).query(sql, [firstname, lastname, hashedPass]);
