@@ -1,43 +1,45 @@
 # Storefront Backend Project
 
 ## Install dependencies
-    `npm i bcrypt`
-    `npm i body-parser`
-    `npm i cors`
-    `npm i db-migrate-pg`
-    `npm i dotenv`
-    `npm i express`
-    `npm i jsonwebtoken`
-    `npm i morgan`
-    `npm i nodemon`
-    `npm i rimraf`
-    `npm i supertest`
-    `npm i @ert78gb/jasmine-ts --save-dev`
-    `npm i @types/bcrypt --save-dev`
-    `npm i @types/cors --save-dev`
-    `npm i @types/express --save-dev`
-    `npm i @types/jasmine --save-dev`
-    `npm i @types/jsonwebtoken --save-dev`
-    `npm i @types/morgan --save-dev`
-    `npm i @types/pg --save-dev`
-    `npm i @types/supertest --save-dev`
-    `npm i @typescript-eslint/eslint-plugin --save-dev`
-    `npm i @typescript-eslint/parser --save-dev`
-    `npm i cross-env --save-dev`
-    `npm i eslint --save-dev`
-    `npm i eslint-config-airbnb-base --save-dev`
-    `npm i eslint-config-prettier --save-dev`
-    `npm i eslint-config-standard --save-dev`
-    `npm i eslint-plugin-import --save-dev`
-    `npm i eslint-plugin-node --save-dev`
-    `npm i eslint-plugin-prettier --save-dev`
-    `npm i eslint-plugin-promise --save-dev`
-    `npm i jasmine --save-dev`
-    `npm i jasmine-spec-reporter --save-dev`
-    `npm i prettier --save-dev`
-    `npm i ts-node --save-dev`
-    `npm i tsc-watch --save-dev`
-    `npm i typescript --save-dev`
+```
+npm i bcrypt
+npm i body-parser
+npm i cors
+npm i db-migrate-pg
+npm i dotenv
+npm i express
+npm i jsonwebtoken
+npm i morgan
+npm i nodemon
+npm i rimraf
+npm i supertest
+npm i @ert78gb/jasmine-ts --save-dev
+npm i @types/bcrypt --save-dev
+npm i @types/cors --save-dev
+npm i @types/express --save-dev
+npm i @types/jasmine --save-dev
+npm i @types/jsonwebtoken --save-dev
+npm i @types/morgan --save-dev
+npm i @types/pg --save-dev
+npm i @types/supertest --save-dev
+npm i @typescript-eslint/eslint-plugin --save-dev
+npm i @typescript-eslint/parser --save-dev
+npm i cross-env --save-dev
+npm i eslint --save-dev
+npm i eslint-config-airbnb-base --save-dev
+npm i eslint-config-prettier --save-dev
+npm i eslint-config-standard --save-dev
+npm i eslint-plugin-import --save-dev
+npm i eslint-plugin-node --save-dev
+npm i eslint-plugin-prettier --save-dev
+npm i eslint-plugin-promise --save-dev
+npm i jasmine --save-dev
+npm i jasmine-spec-reporter --save-dev
+npm i prettier --save-dev
+npm i ts-node --save-dev
+npm i tsc-watch --save-dev
+npm i typescript --save-dev
+```
 
 ## Set up DataBase
     In psql `CREATE USER user WITH PASSWORD 'pass';
