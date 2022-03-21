@@ -4,14 +4,11 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "watch": "rimraf ./dist && tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
     "dev-up": "db-migrate up -m ./database/migrations   --config ./database/config/dev.json",
     "dev-down": "db-migrate reset -m ./database/migrations  --config ./database/config/dev.json",
     "test-up": "db-migrate up -e test -m ./database/migrations   --config ./database/config/test.json ",
     "test-down": "db-migrate reset  -e test -m ./database/migrations  --config ./database/config/test.json",
     "test": "npm run test-up && cross-env ENVI=test jasmine-ts && npm run test-down",
-    "lint": "eslint . --ext .ts",
-    "lint-fix": "eslint . --ext .ts --fix",
     "tsc": "rimraf ./dist && tsc",
     "start": "nodemon --watch './**/*.ts' --exec \"ts-node\" ./src/server.ts"
   },

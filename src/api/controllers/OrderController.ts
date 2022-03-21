@@ -43,8 +43,13 @@ OrderController.put(
             return res.status(400).json({ Error: 'Bad parameters' });
         }
   });
+  
+OrderController.post('/', authToken,async (req:Request, res: Response) => {
+    const createdOrder : Order = await order.createOrder(req.body);
+    return res.json(createdOrder)
+})
 
-OrderController.put(
+OrderController.delete(
     '/:id', 
     authToken, 
     async (req: Request, res: Response) => {

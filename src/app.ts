@@ -1,12 +1,12 @@
 import express, { Application } from 'express';
 import cors from 'cors';
+import { routes } from './api/routes';
 
 export const app: Application = express();
 
-// enable cors
 const corsOption = {
-  optionsSuccessStatus: 200 // for some lagacy browsers
+  optionsSuccessStatus: 200
 };
 app.use(cors(corsOption));
-// add json parser
 app.use(express.json());
+routes(app);

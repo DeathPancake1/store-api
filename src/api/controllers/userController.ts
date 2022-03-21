@@ -6,12 +6,12 @@ import { authToken } from '../../authenticator';
 export const UserController: Router = Router()
 const user: UsersStore = new UsersStore()
 
-UserController.get('/', async (req : Request, res : Response) => {
+UserController.get('/',authToken, async (req : Request, res : Response) => {
     const users: User[] = await user.index()
     return res.json(users)
 })
 
-UserController.get('/:id', async (req : Request, res : Response) => {
+UserController.get('/:id',authToken, async (req : Request, res : Response) => {
     const userID = parseInt(req.params.id)
     const retUser: User = await user.getUser(userID)
     return res.json(retUser)
