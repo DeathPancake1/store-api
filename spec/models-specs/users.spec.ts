@@ -28,22 +28,22 @@ describe('User Model', () => {
   it('should return a list of users using index', async () => {
     const result: User[] = await user.index();
     expect(result).toHaveSize(1);
-    expect(result[0].id).toEqual(1);
+    expect(result[0].id).toEqual(2);
     expect(result[0].firstname).toEqual('user1');
     expect(result[0].lastname).toEqual('last');
     expect(result[0].password).not.toEqual('passw');
   });
 
   it('should return the correct user using getUser', async () => {
-    const result: User = await user.getUser(1);
-    expect(result.id).toEqual(1);
+    const result: User = await user.getUser(2);
+    expect(result.id).toEqual(2);
     expect(result.firstname).toEqual('user1');
     expect(result.lastname).toEqual('last');
     expect(result.password).not.toEqual('passw');
   });
   it('should delete the correct user using deleteUser', async () => {
-    const result: User = await user.deleteUser(1);
-    expect(result.id).toEqual(1);
+    const result: User = await user.deleteUser(2);
+    expect(result.id).toEqual(2);
     expect(result.firstname).toEqual('user1');
     expect(result.lastname).toEqual('last');
     expect(result.password).not.toEqual('passw');

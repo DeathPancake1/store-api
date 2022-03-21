@@ -22,7 +22,7 @@ describe('Product Model', () => {
       price: '60',
     });
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       name: 'prod',
       price: '60',
     });
@@ -31,7 +31,7 @@ describe('Product Model', () => {
     const result: Product[] = await product.index();
     expect(result).toEqual([
       {
-        id: 1,
+        id: 2,
         name: 'prod',
         price: '60',
       }
@@ -39,17 +39,17 @@ describe('Product Model', () => {
   });
 
   it('should return the correct product using getProduct', async () => {
-    const result: Product = await product.getProduct(1);
+    const result: Product = await product.getProduct(2);
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       name: 'prod',
       price: '60',
     });
   });
   it('should delete the correct product using deleteProduct', async () => {
-    const result: Product = await product.deleteProduct(1);
+    const result: Product = await product.deleteProduct(2);
     expect(result).toEqual({
-      id: 1,
+      id: 2,
       name: 'prod',
       price: '60',
     });

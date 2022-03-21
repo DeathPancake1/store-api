@@ -63,7 +63,7 @@ describe('Order Model', () => {
         {
           id: 1,
           product_id: 1,
-          quantity: 10,
+          quantity: 5,
           user_id: 1,
           status: 'active'
         }

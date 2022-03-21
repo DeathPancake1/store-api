@@ -47,7 +47,7 @@ export default class OrdersStore{
         try{
             const sql: string = `UPDATE orders SET status=$1 WHERE id=$2 RETURNING *`
             const conn = await Client.connect()
-            const result = await (await conn).query(sql, [orderID, status]);
+            const result = await (await conn).query(sql, [status, orderID]);
             (await conn).release();
             return result.rows[0];
         } catch(e){
