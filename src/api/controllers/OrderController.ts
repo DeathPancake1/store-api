@@ -8,7 +8,7 @@ export const OrderController: Router = Router()
 const order: OrdersStore = new OrdersStore()
 
 OrderController.get(
-    '/all',
+    '/',
     authToken ,
    async (req:Request, res: Response) => {
     const orders: Order[] = await order.index();
@@ -17,7 +17,7 @@ OrderController.get(
 )
 
 OrderController.get(
-    '/current/:user_id',
+    '/:user_id',
     authToken ,
    async (req:Request, res: Response) => {
     const userId: number = parseInt(req.params.user_id);
@@ -43,24 +43,14 @@ OrderController.put(
             return res.status(400).json({ Error: 'Bad parameters' });
         }
   });
-  
+
 OrderController.post('/', authToken,async (req:Request, res: Response) => {
     const createdOrder : Order = await order.createOrder(req.body);
     return res.json(createdOrder)
 })
 
-OrderController.delete(
-    '/:id', 
-    authToken, 
-    async (req: Request, res: Response) => {
-        const orderId = parseInt(req.query.orderId as string);
-    
-        if (orderId) {
-            const deletedOrder: Order = await order.deleteOrder(
-                orderId
-            );
-            return res.json(deletedOrder);
-        } else {
-            return res.status(400).json({ Error: 'Bad parameters' });
-        }
-  });
+OrderController.delete('/:id', authToken, async (req : Request, res : Response) => {
+    const orderID: number = parseInt(req.params.id)
+    const deletedOrder: Order = await order.deleteOrder(orderID)
+    return res.json(deletedOrder)
+})

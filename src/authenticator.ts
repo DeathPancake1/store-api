@@ -14,6 +14,7 @@ export const authToken = (req: Request, res: Response, next: NextFunction) => {
         res.locals.userData = decToken
         next()
     } catch(err) {
+        res.send('jwt error')
         console.log(err)
     }
 }
