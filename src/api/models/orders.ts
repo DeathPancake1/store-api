@@ -2,7 +2,7 @@ import { Client } from "../database"
 import { Order } from "../interfaces/order";
 
 
-export default class OrderStore{
+export default class OrdersStore{
     async index() : Promise<Order[]> {
         try{
             const conn = await Client.connect()
