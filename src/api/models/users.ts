@@ -1,13 +1,9 @@
 import { Client } from "../database"
 import { User, UserAuth } from "../interfaces/user";
 import bcrypt from "bcrypt"
+import { generateToken } from "../../authenticator";
+require('dotenv').config()
 
-
-import jsonwebtoken from 'jsonwebtoken';
-
-const generateToken: Function = (id: number): string => {
-  return jsonwebtoken.sign(id.toString(), process.env.JWT_SECRET as string);
-};
 
 export default class UsersStore{
     async index() : Promise<User[]> {
