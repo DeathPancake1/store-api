@@ -9,6 +9,12 @@ const token :string = process.env.TEST_TOKEN as string;
 
 describe('Test endpoint responses', () => {
     beforeAll(() => {
+        spyOn(UsersStore.prototype, 'createUser').and.returnValue(
+            Promise.resolve({
+                auth : true,
+                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJwcm9kMiIsImxhc3RuYW1lIjoiNjAiLCJwYXNzd29yZCI6InBhc3MifQ.zo3dDYaQorReOU04__S1yZDK5G8yUopxU0axZ-GWT3M'
+            })
+        )
         spyOn(UsersStore.prototype, 'index').and.returnValue(
             Promise.resolve([{
                 id: 1,
@@ -24,12 +30,6 @@ describe('Test endpoint responses', () => {
                 lastname: '60',
                 password: 'pass'
               })
-        )
-        spyOn(UsersStore.prototype, 'createUser').and.returnValue(
-            Promise.resolve({
-                auth : true,
-                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJwcm9kMiIsImxhc3RuYW1lIjoiNjAiLCJwYXNzd29yZCI6InBhc3MifQ.zo3dDYaQorReOU04__S1yZDK5G8yUopxU0axZ-GWT3M'
-            })
         )
         spyOn(UsersStore.prototype, 'deleteUser').and.returnValue(
             Promise.resolve({
