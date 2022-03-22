@@ -31,7 +31,10 @@ These are the notes from a meeting with the frontend developer that describe wha
 ` TABLE users(id SERIAL PRIMARY KEY,firstName VARCHAR(50),lastName VARCHAR(50),password VARCHAR(60)); `
 
 ### Order
-` CREATE TABLE orders(id SERIAL PRIMARY KEY,product_id INTEGER,quantity INTEGER DEFAULT 1,user_id INTEGER,status mood,FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE ); `
+` TABLE orders(id SERIAL PRIMARY KEY,user_id INTEGER,status mood, FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE ); `
+
+### Order_Products
+` CREATE TABLE order_products(id SERIAL PRIMARY KEY,order_id INTEGER,quantity INTEGER DEFAULT 1,product_id INTEGER,FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE ON UPDATE CASCADE ); `
 
 ### ENUM status
-` CREATE TYPE mood AS ENUM ('active', 'complete'); `
+` TYPE mood AS ENUM ('active', 'complete'); `
