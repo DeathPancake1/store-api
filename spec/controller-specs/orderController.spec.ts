@@ -11,8 +11,6 @@ describe('Test endpoint for product', ()=>{
             Promise.resolve(
               {
                 id: 1,
-                product_id: 1,
-                quantity: 4,
                 user_id: 1,
                 status: 'active'
               }
@@ -22,8 +20,6 @@ describe('Test endpoint for product', ()=>{
             Promise.resolve([
                 {
                     id: 1,
-                    product_id: 1,
-                    quantity: 4,
                     user_id: 1,
                     status: 'active'
                 }
@@ -33,8 +29,6 @@ describe('Test endpoint for product', ()=>{
             Promise.resolve(
                 {
                     id: 1,
-                    product_id: 1,
-                    quantity: 4,
                     user_id: 1,
                     status: 'active'
                 }
@@ -44,8 +38,6 @@ describe('Test endpoint for product', ()=>{
             Promise.resolve(
                 {
                     id: 1,
-                    product_id: 1,
-                    quantity: 4,
                     user_id: 1,
                     status: 'complete'
                 }
@@ -55,8 +47,6 @@ describe('Test endpoint for product', ()=>{
             Promise.resolve(
                 {
                     id: 1,
-                    product_id: 1,
-                    quantity: 4,
                     user_id: 1,
                     status: 'active'
                 }
@@ -71,8 +61,6 @@ describe('Test endpoint for product', ()=>{
         expect(res.body).toEqual(
             {
                 id: 1,
-                product_id: 1,
-                quantity: 4,
                 user_id: 1,
                 status: 'active'
             }
@@ -87,8 +75,6 @@ describe('Test endpoint for product', ()=>{
         expect(res.body).toEqual(
             [{
                 id: 1,
-                product_id: 1,
-                quantity: 4,
                 user_id: 1,
                 status: 'active'
             }]
@@ -103,8 +89,6 @@ describe('Test endpoint for product', ()=>{
         expect(res.body).toEqual(
             {
                 id: 1,
-                product_id: 1,
-                quantity: 4,
                 user_id: 1,
                 status: 'active'
             }
@@ -119,8 +103,6 @@ describe('Test endpoint for product', ()=>{
         expect(res.body).toEqual(
             {
                 id: 1,
-                product_id: 1,
-                quantity: 4,
                 user_id: 1,
                 status: 'complete'
             }
@@ -135,8 +117,6 @@ describe('Test endpoint for product', ()=>{
         expect(res.body).toEqual(
             {
                 id: 1,
-                product_id: 1,
-                quantity: 4,
                 user_id: 1,
                 status: 'active'
             }

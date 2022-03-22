@@ -44,15 +44,11 @@ describe('Order Model', () => {
 
     it('should create order using createOrder method', async () => {
       const result: Order = await order.createOrder({
-        product_id: 1,
-        quantity: 5,
         user_id: 1,
         status: 'active'
       });
       expect(result).toEqual({
         id: 1,
-        product_id: 1,
-        quantity: 5,
         user_id: 1,
         status: 'active'
       });
@@ -62,8 +58,6 @@ describe('Order Model', () => {
       expect(result).toEqual([
         {
           id: 1,
-          product_id: 1,
-          quantity: 5,
           user_id: 1,
           status: 'active'
         }
@@ -73,8 +67,6 @@ describe('Order Model', () => {
       const result: Order = await order.getOrderByUserID(1);
       expect(result).toEqual({
         id: 1,
-        product_id: 1,
-        quantity: 5,
         user_id: 1,
         status: 'active'
       });
@@ -86,8 +78,6 @@ describe('Order Model', () => {
       );
       expect(result).toEqual({
         id: 1,
-        product_id: 1,
-        quantity: 5,
         user_id: 1,
         status: 'complete'
       });
@@ -96,8 +86,6 @@ describe('Order Model', () => {
       const result: Order = await order.deleteOrder(1);
       expect(result).toEqual({
         id: 1,
-        product_id: 1,
-        quantity: 5,
         user_id: 1,
         status: 'complete'
       });

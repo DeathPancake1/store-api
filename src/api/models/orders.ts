@@ -32,10 +32,10 @@ export default class OrdersStore{
 
     async createOrder(order:Order): Promise<Order>{
         try{
-            const { product_id, quantity, user_id, status } = order
-            const sql: string = `INSERT INTO orders (product_id, quantity, user_id, status) VALUES($1, $2, $3, $4) RETURNING *`
+            const { user_id, status } = order
+            const sql: string = `INSERT INTO orders (user_id, status) VALUES($1, $2) RETURNING *`
             const conn = await Client.connect()
-            const result = await (await conn).query(sql, [product_id, quantity, user_id, status]);
+            const result = await (await conn).query(sql, [ user_id, status]);
             (await conn).release();
             return result.rows[0];
         } catch(e){
