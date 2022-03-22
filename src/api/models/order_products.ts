@@ -8,7 +8,6 @@ export default class OrderProductsStore{
             const conn = await Client.connect()
             const sql = "SELECT * FROM order_products"
             const result =  (await conn).query(sql);
-            console.log(result);
             (await conn).release()
             return (await result).rows
         }
@@ -45,7 +44,7 @@ export default class OrderProductsStore{
     async createOrderProducts(orderProd:OrderProducts): Promise<OrderProducts>{
         try{
             const { order_id, quantity,product_id } = orderProd
-            const sql: string = `INSERT INTO order_products (user_id, status) VALUES($1, $2, $3) RETURNING *`
+            const sql: string = `INSERT INTO order_products (order_id, quantity,product_id) VALUES($1, $2, $3) RETURNING *`
             const conn = await Client.connect()
             const result = await (await conn).query(sql, [ order_id, quantity,product_id]);
             (await conn).release();
