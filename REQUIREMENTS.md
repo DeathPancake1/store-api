@@ -20,8 +20,15 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Current Order by user (args: user id)[token required] `'orders/:id'`
 - Create N[token required] `'orders/[POST]'`
 - Get all orders [token required]`'orders/'`
-- UPDATE order status `'orders/:id&:status'`
+- UPDATE order status [token required]`'orders/:id&:status'`
 - DELETE [token required] `'orders/:id'` [DELETE]
+
+#### Order Products
+- Current OrderProduct by order (args: order id)[token required] `'orderProducts/order/:order_id'`
+- Create N[token required] `'orderProducts/[POST]'`
+- Get all orderProductss [token required]`'orderProducts/'`
+- Get orderProduct by id [token required] `'orderProducts/:id'`
+- DELETE [token required] `'orderProducts/:id'` [DELETE]
 
 ## Data Shapes
 #### Product
