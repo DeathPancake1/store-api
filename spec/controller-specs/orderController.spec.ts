@@ -81,7 +81,7 @@ describe('Test endpoint for product', ()=>{
         )
         done()
     });
-    it('should get an order using post /order/:id', async (done) => {
+    it('should get an order using get /order/:id', async (done) => {
         const res = await request
           .get('/orders/1')
           .set('Authorization', 'Bearer ' + token);

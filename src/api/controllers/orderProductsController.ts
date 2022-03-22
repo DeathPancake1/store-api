@@ -4,10 +4,10 @@ import OrderProductsStore from '../models/order_products';
 import { OrderProducts } from '../interfaces/order_products';
 import { authToken } from '../../authenticator';
 
-export const OrderController: Router = Router()
+export const OrderProductsController: Router = Router()
 const order: OrderProductsStore = new OrderProductsStore()
 
-OrderController.get(
+OrderProductsController.get(
     '/',
     authToken ,
    async (req:Request, res: Response) => {
@@ -16,8 +16,8 @@ OrderController.get(
    }
 )
 
-OrderController.get(
-    '/:order_id',
+OrderProductsController.get(
+    '/order/:order_id',
     authToken ,
    async (req:Request, res: Response) => {
     const orderID: number = parseInt(req.params.order_id);
@@ -26,7 +26,7 @@ OrderController.get(
    }
 )
 
-OrderController.get(
+OrderProductsController.get(
     '/:id',
     authToken ,
    async (req:Request, res: Response) => {
@@ -36,12 +36,12 @@ OrderController.get(
    }
 )
 
-OrderController.post('/', authToken,async (req:Request, res: Response) => {
+OrderProductsController.post('/', authToken,async (req:Request, res: Response) => {
     const createdOrder : OrderProducts = await order.createOrderProducts(req.body);
     return res.json(createdOrder)
 })
 
-OrderController.delete('/:id', authToken, async (req : Request, res : Response) => {
+OrderProductsController.delete('/:id', authToken, async (req : Request, res : Response) => {
     const orderID: number = parseInt(req.params.id)
     const deletedOrder: OrderProducts = await order.deleteOrderProducts(orderID)
     return res.json(deletedOrder)
