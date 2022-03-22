@@ -17,7 +17,7 @@ UserController.get('/:id',authToken, async (req : Request, res : Response) => {
     return res.json(retUser)
 })
 
-UserController.post('/', authToken, async (req : Request, res : Response) => {
+UserController.post('/', async (req : Request, res : Response) => {
     const createdUser: UserAuth = await user.createUser(req.body)
     return res.json(createdUser)
 })
