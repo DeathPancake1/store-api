@@ -1,7 +1,7 @@
 import { Router, Response, Request } from 'express';
 import ProductsStore from '../models/products';
-import { Product } from '../interfaces/product';
-import { authToken } from '../../authenticator';
+import { Product } from '../models/products';
+import { authenticatorToken } from '../../authenticator';
 
 export const ProductController: Router = Router()
 const product: ProductsStore = new ProductsStore()
@@ -17,12 +17,12 @@ ProductController.get('/:id', async (req : Request, res : Response) => {
     return res.json(retProduct)
 })
 
-ProductController.post('/', authToken, async (req : Request, res : Response) => {
+ProductController.post('/', authenticatorToken, async (req : Request, res : Response) => {
     const createdProduct: Product = await product.createProduct(req.body)
     return res.json(createdProduct)
 })
 
-ProductController.delete('/:id', authToken, async (req : Request, res : Response) => {
+ProductController.delete('/:id', authenticatorToken, async (req : Request, res : Response) => {
     const productID: number = parseInt(req.params.id)
     const deletedProduct: Product = await product.deleteProduct(productID)
     return res.json(deletedProduct)

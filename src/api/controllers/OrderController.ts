@@ -1,15 +1,15 @@
 import { Router, Response, Request } from 'express';
 
 import OrdersStore from '../models/orders';
-import { Order } from '../interfaces/order';
-import { authToken } from '../../authenticator';
+import { Order } from '../models/orders';
+import { authenticatorToken } from '../../authenticator';
 
 export const OrderController: Router = Router()
 const order: OrdersStore = new OrdersStore()
 
 OrderController.get(
     '/',
-    authToken ,
+    authenticatorToken ,
    async (req:Request, res: Response) => {
     const orders: Order[] = await order.index();
     return res.json(orders);
@@ -18,7 +18,7 @@ OrderController.get(
 
 OrderController.get(
     '/:user_id',
-    authToken ,
+    authenticatorToken ,
    async (req:Request, res: Response) => {
     const userId: number = parseInt(req.params.user_id);
     const currentOrder: Order = await order.getOrderByUserID(userId);
@@ -28,7 +28,7 @@ OrderController.get(
 
 OrderController.put(
     '/', 
-    authToken, 
+    authenticatorToken, 
     async (req: Request, res: Response) => {
         const status = req.query.status as string;
         const orderId = parseInt(req.query.orderId as string);
@@ -44,12 +44,12 @@ OrderController.put(
         }
   });
 
-OrderController.post('/', authToken,async (req:Request, res: Response) => {
+OrderController.post('/', authenticatorToken,async (req:Request, res: Response) => {
     const createdOrder : Order = await order.createOrder(req.body);
     return res.json(createdOrder)
 })
 
-OrderController.delete('/:id', authToken, async (req : Request, res : Response) => {
+OrderController.delete('/:id', authenticatorToken, async (req : Request, res : Response) => {
     const orderID: number = parseInt(req.params.id)
     const deletedOrder: Order = await order.deleteOrder(orderID)
     return res.json(deletedOrder)

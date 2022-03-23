@@ -1,5 +1,11 @@
 import { Client } from "../database"
-import { Product } from "../interfaces/product";
+
+
+export interface Product {
+    id?: number;
+    name: string;
+    price: string;
+  }
 
 export default class ProductsStore{
     async index() : Promise<Product[]> {

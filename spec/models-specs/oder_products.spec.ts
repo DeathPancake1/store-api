@@ -1,10 +1,9 @@
 import OrdersStore from "../../src/api/models/orders"
 import UsersStore from '../../src/api/models/users';
-import { OrderProducts } from '../../src/api/interfaces/order_products';
+import { OrderProducts } from "../../src/api/models/order_products";
 import OrderProductsStore from "../../src/api/models/order_products";
 import ProductsStore from "../../src/api/models/products";
 import { Client } from "../../src/api/database"
-import { Connection } from "pg";
 
 const orderProd: OrderProductsStore = new OrderProductsStore();
 

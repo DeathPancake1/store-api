@@ -6,7 +6,7 @@ export const generateToken: Function = (id: number): string => {
   return jsonwebtoken.sign(id.toString(), process.env.JWT_SECRET as string);
 };
 
-export const authToken = (req: Request, res: Response, next: NextFunction) => {
+export const authenticatorToken = (req: Request, res: Response, next: NextFunction) => {
     try{
         const authorizationHeader = req.headers.authorization
         const token :  string = authorizationHeader ? authorizationHeader.split(' ')[1] : '';

@@ -1,27 +1,12 @@
 import OrdersStore from "../../src/api/models/orders"
 import UsersStore from '../../src/api/models/users';
-import ProductStore from '../../src/api/models/products';
-import { Order } from '../../src/api/interfaces/order';
+import { Order } from "../../src/api/models/orders"
 import ProductsStore from "../../src/api/models/products";
+import { Client } from "../../src/api/database";
 
 const order: OrdersStore = new OrdersStore();
 
 describe('Order Model', () => {
-  it('should have an getOrderByUserID  method', () => {
-    expect(order.getOrderByUserID).toBeDefined();
-  });
-  it('should have a updateOrder method', () => {
-    expect(order.updateOrder).toBeDefined();
-  });
-  it('should have a index method', () => {
-    expect(order.index).toBeDefined();
-  });
-  it('should have a deleteOrder method', () => {
-    expect(order.deleteOrder).toBeDefined();
-  });
-  it('should have a createOrder method', () => {
-    expect(order.createOrder).toBeDefined();
-  });
   describe('Manipulate Order methods', () => {
     const user = new UsersStore();
     const product = new ProductsStore();
@@ -40,6 +25,14 @@ describe('Order Model', () => {
     afterAll(async () => {
       await user.deleteUser(1);
       await product.deleteProduct(1);
+      const conn = await Client.connect()
+      let sql = 'DELETE FROM products;\n ALTER SEQUENCE products_id_seq RESTART WITH 1;\n'
+      await conn.query(sql)
+      sql = 'DELETE FROM orders;\n ALTER SEQUENCE orders_id_seq RESTART WITH 1;\n'
+      await conn.query(sql)
+      sql = 'DELETE FROM users;\n ALTER SEQUENCE users_id_seq RESTART WITH 1;\n'
+      await conn.query(sql)
+      conn.release()
     });
 
     it('should create order using createOrder method', async () => {

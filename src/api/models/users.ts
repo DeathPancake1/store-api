@@ -1,9 +1,19 @@
 import { Client } from "../database"
-import { User, UserAuth } from "../interfaces/user";
 import bcrypt from "bcrypt"
 import { generateToken } from "../../authenticator";
 require('dotenv').config()
 
+
+export interface User {
+    id?: number;
+    firstname: string;
+    lastname: string;
+    password: string;
+  }
+export interface UserAuth {
+    auth : boolean;
+    token : string;
+}
 
 export default class UsersStore{
     async index() : Promise<User[]> {
