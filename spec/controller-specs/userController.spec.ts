@@ -8,39 +8,15 @@ const token :string = process.env.TEST_TOKEN as string;
 
 
 describe('Test endpoint responses', () => {
-    beforeAll(() => {
-        spyOn(UsersStore.prototype, 'createUser').and.returnValue(
-            Promise.resolve({
-                auth : true,
-                token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJwcm9kMiIsImxhc3RuYW1lIjoiNjAiLCJwYXNzd29yZCI6InBhc3MifQ.zo3dDYaQorReOU04__S1yZDK5G8yUopxU0axZ-GWT3M'
-            })
-        )
-        spyOn(UsersStore.prototype, 'index').and.returnValue(
-            Promise.resolve([{
-                id: 1,
-                firstname: 'prod',
-                lastname: '60',
-                password: 'pass'
-              }])
-        )
-        spyOn(UsersStore.prototype, 'getUser').and.returnValue(
-            Promise.resolve({
-                id: 1,
-                firstname: 'prod',
-                lastname: '60',
-                password: 'pass'
-              })
-        )
-        spyOn(UsersStore.prototype, 'deleteUser').and.returnValue(
-            Promise.resolve({
-                id: 1,
-                firstname: 'prod',
-                lastname: '60',
-                password: 'pass'
-              })
-        )
-    });
   it('should get all users using /user/', async (done) => {
+    spyOn(UsersStore.prototype, 'index').and.returnValue(
+      Promise.resolve([{
+          id: 1,
+          firstname: 'prod',
+          lastname: '60',
+          password: 'pass'
+        }])
+  )
     const res = await request
       .get('/users')
       .set('Authorization', 'Bearer ' + token);
@@ -56,6 +32,12 @@ describe('Test endpoint responses', () => {
     done()
   });
   it('should create a user using post /user/:user', async (done) => {
+    spyOn(UsersStore.prototype, 'createUser').and.returnValue(
+      Promise.resolve({
+          auth : true,
+          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJwcm9kMiIsImxhc3RuYW1lIjoiNjAiLCJwYXNzd29yZCI6InBhc3MifQ.zo3dDYaQorReOU04__S1yZDK5G8yUopxU0axZ-GWT3M'
+      })
+  )
     const res = await request
       .post('/users')
       .set('Authorization', 'Bearer ' + token);
@@ -66,6 +48,14 @@ describe('Test endpoint responses', () => {
   });
 
   it('should get a user using /user/:id', async (done) => {
+    spyOn(UsersStore.prototype, 'getUser').and.returnValue(
+      Promise.resolve({
+          id: 1,
+          firstname: 'prod',
+          lastname: '60',
+          password: 'pass'
+        })
+  )
     const res = await request
       .get('/users/1')
       .set('Authorization', 'Bearer ' + token);
@@ -81,6 +71,14 @@ describe('Test endpoint responses', () => {
   });
 
   it('should delete a user using /user/:id', async (done) => {
+    spyOn(UsersStore.prototype, 'deleteUser').and.returnValue(
+      Promise.resolve({
+          id: 1,
+          firstname: 'prod',
+          lastname: '60',
+          password: 'pass'
+        })
+  )
     const res = await request
       .delete('/users/1')
       .set('Authorization', 'Bearer ' + token);

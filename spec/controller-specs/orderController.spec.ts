@@ -6,7 +6,7 @@ const request = supertest(server);
 const token: string = process.env.TEST_TOKEN as string;
 
 describe('Test endpoint for product', ()=>{
-    beforeAll(() => {
+    it('should create an order using post /order/:order', async (done) => {
         spyOn(OrdersStore.prototype, 'createOrder').and.returnValue(
             Promise.resolve(
               {
@@ -16,44 +16,6 @@ describe('Test endpoint for product', ()=>{
               }
             )
         );
-        spyOn(OrdersStore.prototype, 'index').and.returnValue(
-            Promise.resolve([
-                {
-                    id: 1,
-                    user_id: 1,
-                    status: 'active'
-                }
-            ])
-        );
-        spyOn(OrdersStore.prototype, 'getOrderByUserID').and.returnValue(
-            Promise.resolve(
-                {
-                    id: 1,
-                    user_id: 1,
-                    status: 'active'
-                }
-            )
-        );
-        spyOn(OrdersStore.prototype, 'updateOrder').and.returnValue(
-            Promise.resolve(
-                {
-                    id: 1,
-                    user_id: 1,
-                    status: 'complete'
-                }
-            )
-        );
-        spyOn(OrdersStore.prototype, 'deleteOrder').and.returnValue(
-            Promise.resolve(
-                {
-                    id: 1,
-                    user_id: 1,
-                    status: 'active'
-                }
-            )
-        );
-    })
-    it('should create an order using post /order/:order', async (done) => {
         const res = await request
           .post('/orders')
           .set('Authorization', 'Bearer ' + token);
@@ -68,6 +30,15 @@ describe('Test endpoint for product', ()=>{
         done()
     });
     it('should get all orders using get /order/', async (done) => {
+        spyOn(OrdersStore.prototype, 'index').and.returnValue(
+            Promise.resolve([
+                {
+                    id: 1,
+                    user_id: 1,
+                    status: 'active'
+                }
+            ])
+        );
         const res = await request
           .get('/orders')
           .set('Authorization', 'Bearer ' + token);
@@ -82,6 +53,15 @@ describe('Test endpoint for product', ()=>{
         done()
     });
     it('should get an order using get /order/:id', async (done) => {
+        spyOn(OrdersStore.prototype, 'getOrderByUserID').and.returnValue(
+            Promise.resolve(
+                {
+                    id: 1,
+                    user_id: 1,
+                    status: 'active'
+                }
+            )
+        );
         const res = await request
           .get('/orders/1')
           .set('Authorization', 'Bearer ' + token);
@@ -96,6 +76,15 @@ describe('Test endpoint for product', ()=>{
         done()
     });
     it('should update an order using put /order/:id', async (done) => {
+        spyOn(OrdersStore.prototype, 'updateOrder').and.returnValue(
+            Promise.resolve(
+                {
+                    id: 1,
+                    user_id: 1,
+                    status: 'complete'
+                }
+            )
+        );
         const res = await request
           .put('/orders?status=complete&orderId=1')
           .set('Authorization', 'Bearer ' + token);
@@ -110,6 +99,15 @@ describe('Test endpoint for product', ()=>{
         done()
     });
     it('should delete an order using delete /order/:id', async (done) => {
+        spyOn(OrdersStore.prototype, 'deleteOrder').and.returnValue(
+            Promise.resolve(
+                {
+                    id: 1,
+                    user_id: 1,
+                    status: 'active'
+                }
+            )
+        );
         const res = await request
           .delete('/orders/1')
           .set('Authorization', 'Bearer ' + token);

@@ -6,7 +6,7 @@ const request = supertest(server);
 const token: string = process.env.TEST_TOKEN as string;
 
 describe('Test endpoint for product', ()=>{
-    beforeAll(() => {
+    it('should create an order product using post /orderProducts/:orderProd', async (done) => {
         spyOn(OrderProductsStore.prototype, 'createOrderProducts').and.returnValue(
             Promise.resolve(
                 {
@@ -17,48 +17,6 @@ describe('Test endpoint for product', ()=>{
                 }
             )
         );
-        spyOn(OrderProductsStore.prototype, 'index').and.returnValue(
-            Promise.resolve([
-                {
-                    id: 1,
-                    order_id: 1,
-                    quantity: 1,
-                    product_id: 1,
-                }
-            ])
-        );
-        spyOn(OrderProductsStore.prototype, 'getOrderProdByOrderID').and.returnValue(
-            Promise.resolve(
-                [{
-                    id: 1,
-                    order_id: 1,
-                    quantity: 1,
-                    product_id: 1,
-                }]
-            )
-        );
-        spyOn(OrderProductsStore.prototype, 'getOrderByID').and.returnValue(
-            Promise.resolve(
-                {
-                    id: 1,
-                    order_id: 1,
-                    quantity: 1,
-                    product_id: 1,
-                }
-            )
-        );
-        spyOn(OrderProductsStore.prototype, 'deleteOrderProducts').and.returnValue(
-            Promise.resolve(
-                {
-                    id: 1,
-                    order_id: 1,
-                    quantity: 1,
-                    product_id: 1,
-                }
-            )
-        );
-    })
-    it('should create an order product using post /orderProducts/:orderProd', async (done) => {
         const res = await request
           .post('/orderProducts')
           .set('Authorization', 'Bearer ' + token);
@@ -74,6 +32,16 @@ describe('Test endpoint for product', ()=>{
         done()
     });
     it('should get all order products using get /orderProducts/', async (done) => {
+        spyOn(OrderProductsStore.prototype, 'index').and.returnValue(
+            Promise.resolve([
+                {
+                    id: 1,
+                    order_id: 1,
+                    quantity: 1,
+                    product_id: 1,
+                }
+            ])
+        );
         const res = await request
           .get('/orderProducts')
           .set('Authorization', 'Bearer ' + token);
@@ -89,6 +57,16 @@ describe('Test endpoint for product', ()=>{
         done()
     });
     it('should get an order products using get /orderProducts/:id', async (done) => {
+        spyOn(OrderProductsStore.prototype, 'getOrderByID').and.returnValue(
+            Promise.resolve(
+                {
+                    id: 1,
+                    order_id: 1,
+                    quantity: 1,
+                    product_id: 1,
+                }
+            )
+        );
         const res = await request
           .get('/orderProducts/1')
           .set('Authorization', 'Bearer ' + token);
@@ -104,6 +82,16 @@ describe('Test endpoint for product', ()=>{
         done()
     });
     it('should delete an order products using get /orderProducts/:id', async (done) => {
+        spyOn(OrderProductsStore.prototype, 'deleteOrderProducts').and.returnValue(
+            Promise.resolve(
+                {
+                    id: 1,
+                    order_id: 1,
+                    quantity: 1,
+                    product_id: 1,
+                }
+            )
+        );
         const res = await request
           .delete('/orderProducts/1')
           .set('Authorization', 'Bearer ' + token);
