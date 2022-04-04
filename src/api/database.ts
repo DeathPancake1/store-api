@@ -3,10 +3,10 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log('ENV: ', process.env.ENVI);
+console.log('ENVI: ', process.env.ENVI);
 export const Client: Pool = new Pool({
   user: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASS,
+  password: process.env.POSTGRES_PASSWORD,
   host: process.env.POSTGRES_HOST,
   port: parseInt(process.env.POSTGRES_PORT as string),
   database:
